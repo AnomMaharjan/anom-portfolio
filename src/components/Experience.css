@@ -1,0 +1,131 @@
+.jobs-container {
+  display: flex;
+  min-height: 300px;
+}
+
+.tab-list {
+  position: relative;
+  width: max-content;
+  z-index: 3;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 42px;
+  padding: 0 20px 2px;
+  border-left: 2px solid var(--bg-tertiary);
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tab-btn:hover,
+.tab-btn:focus {
+  background-color: var(--bg-secondary);
+  color: var(--accent);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+}
+
+.tab-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 2px;
+  height: 42px;
+  border-radius: 4px;
+  background: var(--accent);
+  transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.job-content {
+  margin-left: 20px;
+  width: 100%;
+}
+
+.job-content h3 {
+  margin-bottom: 2px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.job-content h3 .company {
+  color: var(--accent);
+}
+
+.job-content .range {
+  margin-bottom: 25px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.job-content ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.job-content li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.job-content li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .jobs-container {
+    display: block;
+  }
+  .tab-list {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 30px;
+    border-left: 0;
+  }
+  .tab-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    padding: 0 15px;
+    border-left: 0;
+    border-bottom: 2px solid var(--bg-tertiary);
+    text-align: center;
+  }
+  .tab-highlight {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ideally dynamic based on tab width, but simpler here: */
+    /* Mobile highlight logic is tricky with CSS only transform, usually easier to hide or use horizontal transform. 
+       For this complexity, I'll hide highlight on mobile or adjust it later if needed. */
+    display: none;
+  }
+  .tab-btn.active {
+    border-bottom: 2px solid var(--accent);
+  }
+}

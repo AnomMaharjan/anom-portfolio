@@ -1,0 +1,206 @@
+.project-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.project-item {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.project-item:nth-of-type(2n + 1) .project-content {
+  grid-column: 1 / 7;
+  text-align: right;
+  z-index: 2; /* Ensure text is above image on small screens or overlap */
+}
+
+.project-item:nth-of-type(2n + 1) .project-image {
+  grid-column: 6 / -1;
+  z-index: 1;
+}
+
+.project-item:nth-of-type(2n) .project-content {
+  grid-column: 7 / -1;
+  text-align: left;
+  z-index: 2;
+}
+
+.project-item:nth-of-type(2n) .project-image {
+  grid-column: 1 / 8;
+  z-index: 1;
+}
+
+/* Adjustments so content and image overlap correctly */
+
+.project-overline {
+  margin: 10px 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.project-title {
+  color: var(--text-primary);
+  font-size: clamp(24px, 5vw, 28px);
+  margin: 0 0 20px;
+}
+
+.project-title a:hover {
+  color: var(--accent);
+}
+
+.project-description {
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  transition: var(--transition);
+  position: relative;
+  z-index: 2;
+  padding: 25px;
+  border-radius: 4px;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.project-item:nth-of-type(2n + 1) .project-description {
+  /* Align if needed, text-align handles content */
+}
+
+.project-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  margin: 25px 0 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.project-item:nth-of-type(2n + 1) .project-tech-list {
+  justify-content: flex-end;
+}
+
+.project-tech-list li {
+  margin: 0 0 5px 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.project-item:nth-of-type(2n) .project-tech-list li {
+  margin: 0 20px 5px 0;
+}
+
+.project-links {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 10px;
+  margin-left: -10px;
+  color: var(--text-primary);
+}
+
+.project-item:nth-of-type(2n + 1) .project-links {
+  justify-content: flex-end;
+  margin-left: 0;
+  margin-right: -10px;
+}
+
+.project-links a {
+  padding: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.project-links a:hover {
+  color: var(--accent);
+}
+
+.project-image {
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  transition: var(--transition);
+  grid-area: 1 / 6 / -1 / -1;
+  position: relative;
+  z-index: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.project-item:nth-of-type(2n) .project-image {
+  grid-column: 1 / 8;
+}
+
+.img-placeholder-project {
+  width: 100%;
+  height: 300px;
+  background-color: var(--bg-tertiary);
+  transition: var(--transition);
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(1) brightness(90%);
+  position: relative;
+  border: 1px solid var(--accent);
+}
+
+.project-image:hover,
+.img-placeholder-project:hover {
+  background-color: transparent;
+  mix-blend-mode: normal;
+  filter: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .project-item {
+    display: block;
+    margin-bottom: 70px;
+  }
+
+  .project-content {
+    padding: 40px 40px 30px;
+    z-index: 5;
+    position: relative;
+    height: 100%;
+    background-color: rgba(23, 42, 69, 0.9);
+  }
+
+  .project-item:nth-of-type(2n + 1) .project-content,
+  .project-item:nth-of-type(2n) .project-content {
+    grid-column: 1 / -1;
+    text-align: left;
+    padding: 30px 25px 20px;
+  }
+
+  .project-image {
+    grid-column: 1 / -1;
+    opacity: 0.25;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    box-shadow: none;
+  }
+
+  .project-description {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 20px 0;
+  }
+
+  .project-item:nth-of-type(2n + 1) .project-tech-list {
+    justify-content: flex-start;
+  }
+
+  .project-item:nth-of-type(2n + 1) .project-links {
+    justify-content: flex-start;
+    margin-left: -10px;
+    margin-right: 0;
+  }
+}

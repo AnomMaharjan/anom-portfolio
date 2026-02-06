@@ -1,0 +1,120 @@
+.about-content {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 50px;
+}
+
+.about-text p {
+  margin: 0 0 15px;
+  color: var(--text-secondary);
+  font-size: 18px;
+}
+
+.about-text a {
+  color: var(--accent);
+  display: inline-block;
+  text-decoration-skip-ink: auto;
+  position: relative;
+}
+
+.about-text a::after {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 1px;
+  position: relative;
+  bottom: 0.37em;
+  background-color: var(--accent);
+  transition: var(--transition);
+  opacity: 0.5;
+}
+
+.about-text a:hover::after {
+  width: 100%;
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 200px));
+  gap: 0 10px;
+  padding: 0;
+  margin: 20px 0 0 0;
+  overflow: hidden;
+  list-style: none;
+}
+
+.skills-list li {
+  position: relative;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.skills-list li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  line-height: 12px;
+}
+
+.about-img {
+  position: relative;
+  max-width: 300px;
+}
+
+.img-container {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  background-color: var(--accent);
+}
+
+.img-placeholder {
+  width: 100%;
+  padding-bottom: 100%; /* Square aspect ratio */
+  background-color: var(--bg-secondary);
+  border-radius: 4px;
+  transition: var(--transition);
+  position: relative;
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(1);
+}
+
+.img-container:hover .img-placeholder {
+  mix-blend-mode: normal;
+  filter: none;
+  background-color: transparent; /* Or show actual image */
+}
+
+/* Add a pseudo-border effect */
+.img-container::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--accent);
+  top: 20px;
+  left: 20px;
+  z-index: -1;
+  transition: var(--transition);
+  border-radius: 4px;
+}
+
+.img-container:hover::after {
+  top: 15px;
+  left: 15px;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    display: block;
+  }
+  .about-img {
+    margin: 50px auto 0;
+    width: 70%;
+  }
+}
