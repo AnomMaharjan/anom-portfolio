@@ -1,78 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
+import { projects, projectCategories } from "../data/portfolioData";
+import { useScrollReveal } from "../hooks/useScrollReveal";
+import ProjectModal from "./ProjectModal";
+import {
+  Smartphone,
+  Globe,
+  ArrowUpRight,
+} from "lucide-react";
 import "./Projects.css";
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "E-Commerce Flutter App",
-      description:
-        "A fully featured e-commerce application built with Flutter and Firebase. Includes user authentication, product catalog, cart management, and payment gateway integration.",
-      tech: ["Flutter", "Firebase", "Stripe API", "Provider"],
-      links: { github: "#", external: "#" },
-      image: "project1", // Placeholder class
-    },
-    {
-      title: "Portfolio Website",
-      description:
-        "A responsive portfolio website built with React and Vanilla CSS to showcase my projects and skills. Features a clean, dark-themed design with smooth animations.",
-      tech: ["React", "CSS", "Vite"],
-      links: { github: "#", external: "#" },
-      image: "project2",
-    },
-    {
-      title: "Task Management Tool",
-      description:
-        "A productivity tool for managing daily tasks and projects. Built with React for the frontend and Node.js for the backend. Features drag-and-drop interface and real-time updates.",
-      tech: ["React", "Node.js", "MongoDB", "Socket.io"],
-      links: { github: "#", external: "#" },
-      image: "project3",
-    },
-  ];
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [ref, isVisible] = useScrollReveal({ threshold: 0.1 });
+
+  const filteredProjects =
+    activeCategory === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="work" className="section projects-section">
-      <h2 className="section-title">Some Things I've Built</h2>
-      <ul className="project-list">
-        {projects.map((project, index) => (
-          <li key={index} className="project-item">
-            <div className="project-content">
-              <div>
-                <p className="project-overline">Featured Project</p>
-                <h3 className="project-title">
-                  <a href={project.links.external}>{project.title}</a>
-                </h3>
-                <div className="project-description">
-                  <p>{project.description}</p>
-                </div>
-                <ul className="project-tech-list">
-                  {project.tech.map((tech, i) => (
-                    <li key={i}>{tech}</li>
+    <section
+      id="projects"
+      ref={ref}
+      className={`section projects-section ${isVisible ? "reveal-active" : "reveal-hidden"}`}
+    >
+      <div className="projects-top-clean">
+        <div>
+          <h2 className="section-title">Featured Projects</h2>
+          <p className="projects-subtext-clean">
+            Enterprise mobile platforms, AI-powered applications, and offline-first tools.
+          </p>
+        </div>
+
+        {/* Minimalist Filter Pills */}
+        <div className="filter-row-clean" role="tablist">
+          {projectCategories.map((cat, idx) => (
+            <button
+              key={idx}
+              className={`filter-pill-clean ${activeCategory === cat ? "active" : ""}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Clean Card Grid */}
+      <div className="projects-grid-clean">
+        {filteredProjects.map((project, index) => (
+          <div
+            key={project.id}
+            className="project-tile-clean"
+            onClick={() => setSelectedProject(project)}
+            style={{ animationDelay: `${index * 60}ms` }}
+          >
+            <div className="tile-header">
+              <div className="tile-category-row">
+                <span className="tile-category">{project.category}</span>
+                <div className="tile-platforms">
+                  {project.platforms?.map((plat, pIdx) => (
+                    <span key={pIdx} className="tile-plat-tag">
+                      {plat === "Web" ? <Globe size={11} /> : <Smartphone size={11} />}
+                      {plat}
+                    </span>
                   ))}
-                </ul>
-                <div className="project-links">
-                  <a
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
-                  <a
-                    href={project.links.external}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live Demo
-                  </a>
                 </div>
               </div>
+
+              <h3 className="tile-title">{project.title}</h3>
+              <p className="tile-subtitle">{project.subtitle}</p>
             </div>
-            <div className={`project-image ${project.image}`}>
-              <div className="img-placeholder-project"></div>
+
+            <p className="tile-description">{project.description}</p>
+
+            <div className="tile-footer">
+              <div className="tile-tech-tags">
+                {project.tech.slice(0, 3).map((t, tIdx) => (
+                  <span key={tIdx} className="tile-tech">
+                    {t}
+                  </span>
+                ))}
+                {project.tech.length > 3 && (
+                  <span className="tile-tech more">
+                    +{project.tech.length - 3}
+                  </span>
+                )}
+              </div>
+
+              <span className="tile-view-link">
+                <span>Details</span>
+                <ArrowUpRight size={14} />
+              </span>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
+
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </section>
   );
 };
