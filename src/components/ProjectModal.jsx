@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   X,
   Smartphone,
@@ -15,7 +16,6 @@ const ProjectModal = ({ project, onClose }) => {
       if (e.key === "Escape") onClose();
     };
 
-    // Lock body scroll while modal is active
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
@@ -28,8 +28,12 @@ const ProjectModal = ({ project, onClose }) => {
 
   if (!project) return null;
 
-  return (
-    <div className="modal-backdrop" onClick={onClose} role="presentation">
+  return createPortal(
+    <div
+      className="modal-backdrop"
+      onClick={onClose}
+      role="presentation"
+    >
       <div
         className="modal-container"
         onClick={(e) => e.stopPropagation()}
@@ -139,7 +143,8 @@ const ProjectModal = ({ project, onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
