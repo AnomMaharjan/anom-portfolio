@@ -3,7 +3,6 @@ import {
   X,
   Smartphone,
   Globe,
-  Layers,
   CheckCircle2,
   ExternalLink,
   Sparkles,
@@ -15,10 +14,14 @@ const ProjectModal = ({ project, onClose }) => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
     };
+
+    // Lock body scroll while modal is active
+    const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
@@ -26,17 +29,19 @@ const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-backdrop" onClick={onClose} role="presentation">
       <div
         className="modal-container"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
+        aria-labelledby="modal-project-title"
       >
         <button
           className="modal-close-btn"
           onClick={onClose}
           aria-label="Close modal"
+          title="Close (Esc)"
         >
           <X size={20} />
         </button>
@@ -46,7 +51,9 @@ const ProjectModal = ({ project, onClose }) => {
             <Sparkles size={13} />
             <span>{project.category}</span>
           </div>
-          <h2 className="modal-title">{project.title}</h2>
+          <h2 id="modal-project-title" className="modal-title">
+            {project.title}
+          </h2>
           <p className="modal-subtitle">{project.subtitle}</p>
 
           <div className="modal-platforms">
@@ -64,7 +71,9 @@ const ProjectModal = ({ project, onClose }) => {
             <h4 className="modal-section-heading">Overview & Problem Solved</h4>
             <p className="modal-text">{project.description}</p>
             {project.extendedDetails && (
-              <p className="modal-text secondary-text">{project.extendedDetails}</p>
+              <p className="modal-text secondary-text">
+                {project.extendedDetails}
+              </p>
             )}
           </div>
 
@@ -93,32 +102,41 @@ const ProjectModal = ({ project, onClose }) => {
             </div>
           </div>
 
-          {project.links && (
-            <div className="modal-actions">
-              {project.links.playStore && (
+          {/* Modal Bottom Actions */}
+          <div className="modal-bottom-bar">
+            <div className="modal-external-links">
+              {project.links?.playStore && (
                 <a
                   href={project.links.playStore}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="modal-action-btn primary"
                 >
-                  <Smartphone size={16} />
-                  <span>Google Play Store</span>
+                  <Smartphone size={15} />
+                  <span>Google Play</span>
                 </a>
               )}
-              {project.links.appStore && (
+              {project.links?.appStore && (
                 <a
                   href={project.links.appStore}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="modal-action-btn secondary"
                 >
-                  <ExternalLink size={16} />
-                  <span>Apple App Store</span>
+                  <ExternalLink size={15} />
+                  <span>App Store</span>
                 </a>
               )}
             </div>
-          )}
+
+            <button
+              type="button"
+              className="modal-close-action-btn"
+              onClick={onClose}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
