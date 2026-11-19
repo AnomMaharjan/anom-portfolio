@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Download } from "lucide-react";
+import {
+  Menu,
+  X,
+  Download,
+  Terminal,
+  Search,
+  Zap,
+} from "lucide-react";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ onOpenCommandPalette }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState("hero");
+  const [activeSection, setActiveSection] = useState("bento-overview");
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
 
-      const totalHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress((window.scrollY / totalHeight) * 100);
-      }
-
-      // Check which section is in viewport
-      const sections = ["hero", "about", "experience", "projects", "skills", "contact"];
+      const sections = [
+        "bento-overview",
+        "code-inspector",
+        "projects-bento",
+        "career-changelog",
+        "tech-stack",
+        "contact-widget",
+      ];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -40,11 +46,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "About", url: "#about", id: "about" },
-    { name: "Experience", url: "#experience", id: "experience" },
-    { name: "Projects", url: "#projects", id: "projects" },
-    { name: "Skills", url: "#skills", id: "skills" },
-    { name: "Contact", url: "#contact", id: "contact" },
+    { name: "Overview", url: "#bento-overview", id: "bento-overview" },
+    { name: "Architecture", url: "#code-inspector", id: "code-inspector" },
+    { name: "Projects", url: "#projects-bento", id: "projects-bento" },
+    { name: "Changelog", url: "#career-changelog", id: "career-changelog" },
+    { name: "Stack", url: "#tech-stack", id: "tech-stack" },
+    { name: "Contact", url: "#contact-widget", id: "contact-widget" },
   ];
 
   const handleNavClick = (e, url) => {
@@ -58,70 +65,67 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <div
-        className="scroll-progress-bar"
-        style={{ width: `${scrollProgress}%` }}
-      />
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <div className="nav-container">
-          <a
-            href="#hero"
-            onClick={(e) => handleNavClick(e, "#hero")}
-            className="logo"
-            aria-label="Home"
+    <header className="navbar-wrapper">
+      <nav className={`navbar-capsule ${scrolled ? "scrolled" : ""}`}>
+        <a
+          href="#bento-overview"
+          onClick={(e) => handleNavClick(e, "#bento-overview")}
+          className="capsule-logo"
+        >
+          <img src="/favicon.png" alt="Anom" className="capsule-avatar" />
+          <span className="capsule-brand-name">Anom.dev</span>
+        </a>
+
+        {/* Links */}
+        <div className={`capsule-nav-menu ${isOpen ? "open" : ""}`}>
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.url}
+              onClick={(e) => handleNavClick(e, link.url)}
+              className={`capsule-nav-link ${
+                activeSection === link.id ? "active" : ""
+              }`}
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+
+        {/* Quick Actions */}
+        <div className="capsule-actions">
+          <button
+            id="cmd-k-trigger"
+            className="capsule-cmd-btn"
+            onClick={onOpenCommandPalette}
+            title="Open Command Palette (⌘K)"
           >
-            <div className="logo-badge">
-              <span className="logo-symbol">&lt;</span>
-              <span className="logo-initials">AM</span>
-              <span className="logo-symbol">/&gt;</span>
-            </div>
-            <span className="logo-text">Anom.dev</span>
+            <Search size={14} />
+            <span className="cmd-label">⌘K</span>
+          </button>
+
+          <a
+            href="/Anom_Maharjan_Resume.pdf"
+            download="Anom_Maharjan_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="capsule-cv-btn"
+            title="Download Resume (PDF)"
+          >
+            <Download size={13} />
+            <span className="cv-btn-text">CV</span>
           </a>
 
-          <div className={`nav-links ${isOpen ? "active" : ""}`}>
-            <ol>
-              {navLinks.map((link, index) => (
-                <li
-                  key={index}
-                  style={{ animationDelay: `${index * 80}ms` }}
-                >
-                  <a
-                    href={link.url}
-                    onClick={(e) => handleNavClick(e, link.url)}
-                    className={activeSection === link.id ? "active-link" : ""}
-                  >
-                    <span className="nav-number">0{index + 1}.</span>
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ol>
-            <div className="nav-actions">
-              <a
-                href="/Anom_Maharjan_Resume.pdf"
-                download="Anom_Maharjan_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="resume-btn"
-                title="Download Anom Maharjan's CV"
-              >
-                <Download size={15} />
-                <span>Download CV</span>
-              </a>
-            </div>
-          </div>
-
           <button
-            className="hamburger-btn"
+            className="capsule-mobile-hamburger"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-label="Toggle Navigation"
           >
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
-    </>
+    </header>
   );
 };
 

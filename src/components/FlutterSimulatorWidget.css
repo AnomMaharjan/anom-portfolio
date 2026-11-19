@@ -1,0 +1,455 @@
+.simulator-widget-card {
+  display: flex;
+  flex-direction: column;
+  background: #111116;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.sim-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.sim-status-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sim-live-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.sim-fps {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #10b981;
+}
+
+.sim-tabs {
+  display: flex;
+  gap: 0.35rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sim-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #94a3b8;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.sim-tab-btn:hover {
+  color: #f1f5f9;
+}
+
+.sim-tab-btn.active {
+  background: #1f1f28;
+  color: #38bdf8;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Phone Frame */
+.phone-mockup-frame {
+  position: relative;
+  background: #000000;
+  border: 2px solid #27272a;
+  border-radius: 24px;
+  padding: 10px 10px 14px 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8),
+              0 15px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-notch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 16px;
+  margin-bottom: 6px;
+}
+
+.phone-speaker {
+  width: 40px;
+  height: 4px;
+  background: #27272a;
+  border-radius: 2px;
+}
+
+.phone-cam {
+  width: 6px;
+  height: 6px;
+  background: #1e1e24;
+  border-radius: 50%;
+}
+
+.phone-screen-content {
+  background: #09090d;
+  border-radius: 16px;
+  min-height: 240px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.phone-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.app-brand-text {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.cart-badge-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #f59e0b;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.cart-count {
+  background: #f59e0b;
+  color: #000;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.65rem;
+}
+
+/* Product Card in Phone */
+.sim-product-card {
+  background: #14141b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sim-product-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #ec4899;
+  text-transform: uppercase;
+}
+
+.sim-product-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0.2rem 0 0.4rem 0;
+}
+
+.sim-product-pricing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.price-tag {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.stock-tag {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+.sim-gateway-pills {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.gateway-badge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.gateway-badge.khalti {
+  background: rgba(139, 92, 246, 0.15);
+  color: #c084fc;
+}
+
+.gateway-badge.esewa {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.sim-btn-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+.sim-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.sim-action-btn.secondary {
+  background: #1c1c24;
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sim-action-btn.primary {
+  flex: 1;
+  background: #6366f1;
+  color: #fff;
+  font-weight: 600;
+}
+
+.sim-action-btn.primary:hover {
+  background: #4f46e5;
+}
+
+.sim-action-btn.primary.full {
+  width: 100%;
+}
+
+.sim-action-btn.outline-full {
+  width: 100%;
+  margin-top: auto;
+  background: #14141c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #38bdf8;
+}
+
+.sim-order-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 8px;
+  color: #34d399;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-top: auto;
+  animation: popIn 0.2s ease-out;
+}
+
+/* JLPT AI Card */
+.ai-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.sim-flashcard {
+  background: #14141e;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem 0.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-height: 120px;
+  transition: all 0.2s ease;
+}
+
+.sim-flashcard:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  transform: scale(1.02);
+}
+
+.kanji-display {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.romaji-display {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #a855f7;
+  margin-top: 0.25rem;
+}
+
+.card-tap-hint {
+  font-size: 0.62rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.ai-explanation-box {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ai-meaning {
+  font-weight: 700;
+  color: #f1f5f9;
+  font-size: 0.8rem;
+}
+
+.ai-breakdown {
+  font-size: 0.68rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.nepali-translation {
+  font-size: 0.72rem;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+/* Cardiac Center */
+.security-pill {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.doctor-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #14141e;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 0.75rem;
+}
+
+.doc-avatar-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ef4444;
+  opacity: 0.8;
+}
+
+.doc-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.doc-spec {
+  font-size: 0.65rem;
+  color: #64748b;
+}
+
+.appointment-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.slot-label {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+}
+
+.slot-chips {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.slot-chip {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: #191924;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.slot-chip.selected {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  color: #fca5a5;
+  font-weight: 600;
+}
+
+.phone-home-indicator {
+  width: 60px;
+  height: 3px;
+  background: #3f3f46;
+  border-radius: 2px;
+  margin: 6px auto 0 auto;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

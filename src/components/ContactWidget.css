@@ -1,0 +1,191 @@
+.contact-widget-section {
+  padding: 60px 0 80px 0;
+}
+
+.text-center {
+  align-items: center;
+  text-align: center;
+}
+
+.center-badge {
+  margin: 0 auto;
+}
+
+.center-text {
+  margin: 0 auto;
+}
+
+.contact-bento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.contact-direct-card,
+.contact-form-card {
+  background: #111116;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+
+.direct-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.25rem;
+}
+
+.direct-card-sub {
+  font-size: 0.825rem;
+  color: #94a3b8;
+  margin-bottom: 1.25rem;
+}
+
+.direct-channels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.direct-channel-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: #16161e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.direct-channel-item:hover {
+  background: #1c1c26;
+  border-color: rgba(255, 255, 255, 0.14);
+  transform: translateX(3px);
+}
+
+.channel-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.channel-icon-box.whatsapp {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.channel-icon-box.linkedin {
+  background: rgba(99, 102, 241, 0.1);
+  color: #818cf8;
+}
+
+.channel-text-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.channel-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.channel-val {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.channel-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.channel-arrow {
+  color: #64748b;
+}
+
+/* Form Card */
+.widget-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.form-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.widget-form input,
+.widget-form textarea {
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  background: #09090d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #f8fafc;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+}
+
+.widget-form input:focus,
+.widget-form textarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+}
+
+.widget-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem;
+  background: #38bdf8;
+  color: #030712;
+  font-weight: 600;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.widget-submit-btn:hover {
+  background: #7dd3fc;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+@media (max-width: 768px) {
+  .contact-bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-two-col {
+    grid-template-columns: 1fr;
+  }
+}
