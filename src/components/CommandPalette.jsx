@@ -17,7 +17,15 @@ import { personalInfo, projects } from "../data/portfolioData";
 import { GithubIcon, LinkedinIcon, WhatsAppIcon } from "./Icons";
 import "./CommandPalette.css";
 
-const CommandPalette = ({ isOpen, onClose, onSelectProject }) => {
+const SECTION_TO_APP = {
+  "bento-overview": "about",
+  "code-inspector": "code",
+  "projects-bento": "projects",
+  "career-changelog": "career",
+  "contact-widget": "contact",
+};
+
+const CommandPalette = ({ isOpen, onClose, onSelectProject, onNavigate }) => {
   const [query, setQuery] = useState("");
   const [copied, setCopied] = useState(false);
 
@@ -52,6 +60,10 @@ const CommandPalette = ({ isOpen, onClose, onSelectProject }) => {
 
   const scrollTo = (id) => {
     onClose();
+    if (onNavigate && SECTION_TO_APP[id]) {
+      onNavigate(SECTION_TO_APP[id]);
+      return;
+    }
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };

@@ -1,54 +1,33 @@
-import React, { useState } from "react";
-import Navbar from "./components/Navbar";
-import IPhoneDuoHero from "./components/IPhoneDuoHero";
-import CodeInspector from "./components/CodeInspector";
-import ProjectsBento from "./components/ProjectsBento";
-import CareerChangelog from "./components/CareerChangelog";
-import TechStackDock from "./components/TechStackDock";
-import ContactWidget from "./components/ContactWidget";
-import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+import React, { useState, useRef } from "react";
+import DuoSite from "./components/duo/DuoSite";
 import CommandPalette from "./components/CommandPalette";
-import ProjectModal from "./components/ProjectModal";
 import "./App.css";
 
 function App() {
-  const [selectedProject, setSelectedProject] = useState(null);
   const [isCmdOpen, setIsCmdOpen] = useState(false);
+  const navigateRef = useRef(null);
+
+  const navigate = (id, project) => navigateRef.current?.(id, project);
 
   return (
     <div className="App">
+      <h1 className="sr-only">
+        Anom Maharjan, Flutter Developer & Software Engineer
+      </h1>
+
       {/* ⌘K Command Palette */}
       <CommandPalette
         isOpen={isCmdOpen}
         onClose={() => setIsCmdOpen(false)}
-        onSelectProject={(proj) => setSelectedProject(proj)}
+        onSelectProject={(proj) => navigate("projects", proj)}
+        onNavigate={(id) => navigate(id)}
       />
 
-      {/* Floating Glass Navbar */}
-      <Navbar onOpenCommandPalette={() => setIsCmdOpen(true)} />
-
-      {/* Main Container */}
-      <main className="container">
-        <IPhoneDuoHero onOpenCommandPalette={() => setIsCmdOpen(true)} />
-        <CodeInspector />
-        <ProjectsBento onSelectProject={(proj) => setSelectedProject(proj)} />
-        <CareerChangelog />
-        <TechStackDock />
-        <ContactWidget />
-      </main>
-
-      {/* Footer & Scroll Tools */}
-      <Footer />
-      <ScrollToTop />
-
-      {/* Deep Dive Project Specs Modal */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
+      {/* The whole site lives inside the iPhone Duo */}
+      <DuoSite
+        navigateRef={navigateRef}
+        onOpenPalette={() => setIsCmdOpen(true)}
+      />
     </div>
   );
 }

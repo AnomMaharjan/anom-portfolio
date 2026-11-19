@@ -21,12 +21,15 @@ import {
   ArrowRight,
   Wifi,
   Battery,
+  Minimize2,
+  Maximize2,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, WhatsAppIcon } from "./Icons";
 import "./IPhoneDuoHero.css";
 
 const IPhoneDuoHero = ({ onOpenCommandPalette }) => {
   const [copied, setCopied] = useState(false);
+  const [folded, setFolded] = useState(false);
   const [kathmanduTime, setKathmanduTime] = useState("");
 
   // Phone 1 State (Descriptions & Profile Phone)
@@ -146,27 +149,18 @@ const IPhoneDuoHero = ({ onOpenCommandPalette }) => {
 
       {/* THE IPHONE DUO CONTAINER */}
       <div className="iphone-duo-stage">
+        <div className={`duo-device ${folded ? "folded" : ""}`}>
         {/* ============================================================
             IPHONE 1: DESCRIPTIONS, BIO & CREDENTIALS
         ============================================================ */}
+        <div className="duo-half duo-half-left">
         <div className="iphone-mockup phone-left">
           {/* Hardware Frame Elements */}
           <div className="phone-screen-glare"></div>
 
-          {/* Dynamic Island */}
-          <div className="dynamic-island">
-            <span className="camera-lens"></span>
-            <span className="sensor-dot"></span>
-          </div>
-
           {/* Status Bar */}
           <div className="phone-status-bar">
             <span className="phone-clock">{kathmanduTime || "09:41"}</span>
-            <div className="phone-status-icons">
-              <span className="carrier-tag">5G</span>
-              <Wifi size={12} />
-              <Battery size={13} />
-            </div>
           </div>
 
           {/* Screen Body */}
@@ -361,27 +355,25 @@ const IPhoneDuoHero = ({ onOpenCommandPalette }) => {
             </div>
           </div>
 
-          {/* Home Bar */}
-          <div className="phone-home-bar"></div>
         </div>
 
         {/* ============================================================
             IPHONE 2: LIVE INTERACTIVE FLUTTER APPS
         ============================================================ */}
+        </div>
+
+
+        <div className="duo-wing">
+        <div className="duo-half duo-half-right wing-front">
         <div className="iphone-mockup phone-right">
           <div className="phone-screen-glare"></div>
 
-          {/* Dynamic Island */}
-          <div className="dynamic-island">
-            <span className="camera-lens"></span>
-            <span className="sensor-dot"></span>
-          </div>
-
           {/* Status Bar */}
-          <div className="phone-status-bar">
-            <span className="phone-clock">9:41</span>
+          <div className="phone-status-bar end">
             <div className="phone-status-icons">
               <span className="flutter-engine-tag">FLUTTER 3.24</span>
+              <span className="carrier-tag">5G</span>
+              <Wifi size={12} />
               <Battery size={13} />
             </div>
           </div>
@@ -574,10 +566,45 @@ const IPhoneDuoHero = ({ onOpenCommandPalette }) => {
             )}
           </div>
 
-          {/* Home Bar */}
-          <div className="phone-home-bar"></div>
+        </div>
+        </div>
+        <button
+          type="button"
+          className="duo-half duo-half-right wing-back"
+          onClick={() => setFolded(false)}
+          aria-label="Unfold device"
+          tabIndex={folded ? 0 : -1}
+        >
+          <span className="cover-screen">
+            <span className="cover-island">
+              <span className="camera-lens"></span>
+            </span>
+            <span className="cover-time">
+              {(kathmanduTime || "09:41").replace(" NPT", "")}
+            </span>
+            <span className="cover-date">Kathmandu • NPT</span>
+            <span className="cover-name">Anom Maharjan</span>
+            <span className="cover-role">Flutter Developer</span>
+            <span className="cover-hint">Tap to unfold</span>
+            <span className="cover-home-bar"></span>
+          </span>
+        </button>
+        </div>
+        {/* Continuous inner display details */}
+        <div className="duo-crease" aria-hidden="true"></div>
+        <div className="duo-home-bar" aria-hidden="true"></div>
         </div>
       </div>
+
+      <button
+        type="button"
+        className="duo-fold-toggle"
+        onClick={() => setFolded((f) => !f)}
+        aria-pressed={folded}
+      >
+        {folded ? <Maximize2 size={14} /> : <Minimize2 size={14} />}
+        <span>{folded ? "Unfold" : "Fold"}</span>
+      </button>
     </section>
   );
 };
