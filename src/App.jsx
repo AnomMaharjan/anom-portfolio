@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
-import BentoHero from "./components/BentoHero";
+import IPhoneDuoHero from "./components/IPhoneDuoHero";
 import CodeInspector from "./components/CodeInspector";
 import ProjectsBento from "./components/ProjectsBento";
 import CareerChangelog from "./components/CareerChangelog";
@@ -30,7 +30,7 @@ function App() {
 
       {/* Main Container */}
       <main className="container">
-        <BentoHero onOpenCommandPalette={() => setIsCmdOpen(true)} />
+        <IPhoneDuoHero onOpenCommandPalette={() => setIsCmdOpen(true)} />
         <CodeInspector />
         <ProjectsBento onSelectProject={(proj) => setSelectedProject(proj)} />
         <CareerChangelog />

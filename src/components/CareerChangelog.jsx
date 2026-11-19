@@ -60,7 +60,7 @@ const CareerChangelog = () => {
 
                   <h3 className="job-title-line">
                     <span className="role-title">{job.role}</span>
-                    <span className="company-at"> @ {job.company}</span>
+                    {job.company && <span className="company-at"> @ {job.company}</span>}
                   </h3>
 
                   <div className="job-tagline-text">{job.tagline}</div>
